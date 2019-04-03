@@ -13,9 +13,9 @@ public:
 
 
     // QWidget interface
+    void keyReleaseEvent(QKeyEvent *event) override;
 protected:
     void paintEvent(QPaintEvent *event) override;
-    void keyReleaseEvent(QKeyEvent *event) override;
 
 private:
     QRect genTargetTextRect(int i, int j);

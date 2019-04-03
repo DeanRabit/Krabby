@@ -25,10 +25,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    typewidget.cpp
+    typewidget.cpp \
+    mainwindow.cpp
 
 HEADERS += \
-    typewidget.h
+    typewidget.h \
+    mainwindow.h
 
 DISTFILES +=
 
