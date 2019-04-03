@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "typewidget.h"
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent)
+    DMainWindow(parent)
 {
     m_typeWidget = new TypeWidget();
     setCentralWidget(m_typeWidget);
