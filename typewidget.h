@@ -24,7 +24,9 @@ private:
     void drawWrongChar(QPainter &painter, int i, int j, QChar targetCh, QChar inputCh);
     void drawCorrectChar(QPainter &painter, int i, int j, QChar ch);
     void drawCursor(QPainter &painter);
+    void drawBottom(QPainter &painter);
     void nextPageJudge();
+    int countWrongCh();
 private:
     QString m_text;
     QString m_input;
@@ -35,6 +37,10 @@ private:
     bool m_cursorShow;
     int m_pageNum;
     int m_eachPageLineCount;
+    int m_time;
+    int m_inputTotal;
+    int m_textTotal;
+    int m_prevWrongCount;
 };
 
 #endif // WIDGET_H
