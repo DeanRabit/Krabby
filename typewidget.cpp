@@ -1,7 +1,7 @@
-#include "widget.h"
+#include "typewidget.h"
 #include <QtCore>
 #include <QtWidgets>
-Widget::Widget(QWidget *parent)
+TypeWidget::TypeWidget(QWidget *parent)
     : QWidget(parent)
 {
     m_eachLineCharCount = 50;
@@ -29,12 +29,12 @@ Widget::Widget(QWidget *parent)
     m_text = m_pageText[m_pageNum];
 }
 
-Widget::~Widget()
+TypeWidget::~TypeWidget()
 {
 
 }
 
-void Widget::paintEvent(QPaintEvent *event)
+void TypeWidget::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event)
     QPainter painter(this);
@@ -59,7 +59,7 @@ void Widget::paintEvent(QPaintEvent *event)
     drawCursor(painter);
 }
 
-void Widget::keyReleaseEvent(QKeyEvent *event)
+void TypeWidget::keyReleaseEvent(QKeyEvent *event)
 {
     switch (event->key()) {
     case Qt::Key_Backspace:
@@ -78,21 +78,21 @@ void Widget::keyReleaseEvent(QKeyEvent *event)
     update();
 }
 
-QRect Widget::genTargetTextRect(int i, int j)
+QRect TypeWidget::genTargetTextRect(int i, int j)
 {
     int y = i * m_lineHeight * 2;
     int x = j * m_fontWidth;
     return QRect(x, y, m_fontWidth, m_lineHeight);
 }
 
-QRect Widget::genInputTextRect(int i, int j)
+QRect TypeWidget::genInputTextRect(int i, int j)
 {
     int y = i * m_lineHeight * 2 + m_lineHeight;
     int x = j * m_fontWidth;
     return QRect(x, y, m_fontWidth, m_lineHeight);
 }
 
-QLineF Widget::genCursorLine(int i, int j)
+QLineF TypeWidget::genCursorLine(int i, int j)
 {
     int y = i * m_lineHeight * 2 + m_lineHeight;
     int x = j * m_fontWidth;
@@ -104,7 +104,7 @@ QLineF Widget::genCursorLine(int i, int j)
                 );
 }
 
-void Widget::drawWrongChar(QPainter& painter, int i, int j, QChar targetCh, QChar inputCh)
+void TypeWidget::drawWrongChar(QPainter& painter, int i, int j, QChar targetCh, QChar inputCh)
 {
     painter.save();
     painter.setPen(Qt::red);
@@ -115,7 +115,7 @@ void Widget::drawWrongChar(QPainter& painter, int i, int j, QChar targetCh, QCha
     painter.restore();
 }
 
-void Widget::drawCorrectChar(QPainter& painter, int i, int j, QChar ch)
+void TypeWidget::drawCorrectChar(QPainter& painter, int i, int j, QChar ch)
 {
     painter.save();
     painter.setPen(Qt::gray);
@@ -126,7 +126,7 @@ void Widget::drawCorrectChar(QPainter& painter, int i, int j, QChar ch)
     painter.restore();
 }
 
-void Widget::drawCursor(QPainter &painter)
+void TypeWidget::drawCursor(QPainter &painter)
 {
     if (m_cursorShow) {
         int i = m_input.length() / m_eachLineCharCount;
@@ -136,7 +136,7 @@ void Widget::drawCursor(QPainter &painter)
     m_cursorShow = !m_cursorShow;
 }
 
-void Widget::nextPageJudge()
+void TypeWidget::nextPageJudge()
 {
     if (m_pageNum == m_pageText.length()) {
         return;
