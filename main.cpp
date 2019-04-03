@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     a.setOrganizationName("pikachu");
     a.setApplicationName("krabby");
     a.setApplicationVersion("1.0");
-    a.setProductIcon(QIcon(":/images/logo.svg"));
+    a.setProductIcon(QIcon(":/images/logo.png"));
     a.setProductName("Krabbby");
     a.setApplicationDescription("This is a simple type application.");
 
