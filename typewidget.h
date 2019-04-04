@@ -18,12 +18,9 @@ protected:
     void paintEvent(QPaintEvent *event) override;
 
 private:
-    QRect genTargetTextRect(int i, int j);
-    QRect genInputTextRect(int i, int j);
-    QLineF genCursorLine(int i, int j);
-    void drawWrongChar(QPainter &painter, int i, int j, QChar targetCh, QChar inputCh);
-    void drawCorrectChar(QPainter &painter, int i, int j, QChar ch);
-    void drawCursor(QPainter &painter);
+    void drawWrongChar(QPainter &painter, int x, int y, int w, QString targetCh, QString inputCh);
+    void drawCorrectChar(QPainter &painter, int x, int y, int w, QString chStr);
+    void drawCursor(QPainter &painter, int x, int y);
     void drawBottom(QPainter &painter);
     void nextPageJudge();
     int countWrongCh();

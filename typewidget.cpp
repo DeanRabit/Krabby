@@ -36,7 +36,7 @@ TypeWidget::TypeWidget(QWidget *parent)
 {
     m_eachLineCharCount = 50;
     m_fontWidth = 24;
-    m_lineHeight = 30;
+    m_lineHeight = 36;
     m_cursorShow = true;
     m_pageNum = 0;
     m_eachPageLineCount = 5;
@@ -75,25 +75,45 @@ void TypeWidget::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event)
     QPainter painter(this);
+    painter.save();
     auto font = painter.font();
     font.setPixelSize(m_fontWidth);
+    font.setFamily("Noto Mono");
     painter.setFont(font);
-    for(int i = 0; i * m_eachLineCharCount < m_text.length(); i++) {
-        for(int j = 0; j < m_eachLineCharCount; j++) {
-            int index = i * m_eachLineCharCount + j;
-            if (m_input.length() <= index) {
-                auto textRect = genTargetTextRect(i, j);
-                painter.drawText(textRect, Qt::AlignCenter, QString(m_text[index]));
+    QFontMetrics fontMetrics(font);
+    int x = 0;
+    int y = 0;
+    for(int i = 0; i<m_text.length(); i++) {
+        int w = 0;
+        if (m_input.length() <= i) {
+            if (m_input.length() == i) {
+                drawCursor(painter, x, y);
+            }
+            QString chStr = QString(m_text[i]);
+            w = fontMetrics.width(chStr);
+            auto rect = QRect(x, y, w, m_lineHeight);
+            painter.drawText(rect, Qt::AlignCenter, chStr);
+        } else {
+            if (m_text[i] == m_input[i]) {
+                QString chStr = QString(m_text[i]);
+                w = fontMetrics.width(chStr);
+                drawCorrectChar(painter, x, y, w, chStr);
             } else {
-                if (m_text[index] == m_input[index]) {
-                    drawCorrectChar(painter, i, j, m_text[index]);
-                } else {
-                    drawWrongChar(painter, i, j, m_text[index], m_input[index]);
-                }
+                QString chTarget = QString(m_text[i]);
+                QString chInput = QString(m_input[i]);
+                w = qMax(fontMetrics.width(chTarget), fontMetrics.width(chInput));
+                drawWrongChar(painter, x, y, w, chTarget, chInput);
             }
         }
+        if (x + 2 * w > width()) {
+            x = 0;
+            y += 2 * m_lineHeight;
+        } else {
+            x += w;
+        }
     }
-    drawCursor(painter);
+
+    painter.restore();
     drawBottom(painter);
 }
 
@@ -121,60 +141,40 @@ void TypeWidget::keyReleaseEvent(QKeyEvent *event)
     update();
 }
 
-QRect TypeWidget::genTargetTextRect(int i, int j)
-{
-    int y = i * m_lineHeight * 2;
-    int x = j * m_fontWidth;
-    return QRect(x, y, m_fontWidth, m_lineHeight);
-}
 
-QRect TypeWidget::genInputTextRect(int i, int j)
-{
-    int y = i * m_lineHeight * 2 + m_lineHeight;
-    int x = j * m_fontWidth;
-    return QRect(x, y, m_fontWidth, m_lineHeight);
-}
 
-QLineF TypeWidget::genCursorLine(int i, int j)
-{
-    int y = i * m_lineHeight * 2 + m_lineHeight;
-    int x = j * m_fontWidth;
-    return QLineF(
-                x + 1,
-                y,
-                x + 1,
-                y + m_lineHeight - 2
-                );
-}
-
-void TypeWidget::drawWrongChar(QPainter& painter, int i, int j, QChar targetCh, QChar inputCh)
+void TypeWidget::drawWrongChar(QPainter &painter, int x, int y, int w, QString targetCh, QString inputCh)
 {
     painter.save();
     painter.setPen(Qt::red);
-    auto targetRect = genTargetTextRect(i, j);
+    auto targetRect = QRect(x, y, w, m_lineHeight);
     painter.drawText(targetRect, Qt::AlignCenter, QString(targetCh));
-    auto inputRect = genInputTextRect(i, j);
+    auto inputRect = QRect(x, y + m_lineHeight, w, m_lineHeight);
     painter.drawText(inputRect, Qt::AlignCenter, QString(inputCh));
     painter.restore();
 }
 
-void TypeWidget::drawCorrectChar(QPainter& painter, int i, int j, QChar ch)
+void TypeWidget::drawCorrectChar(QPainter &painter, int x, int y, int w, QString chStr)
 {
     painter.save();
     painter.setPen(Qt::gray);
-    auto targetRect = genTargetTextRect(i, j);
-    painter.drawText(targetRect, Qt::AlignCenter, QString(ch));
-    auto inputRect = genInputTextRect(i, j);
-    painter.drawText(inputRect, Qt::AlignCenter, QString(ch));
+    auto targetRect = QRect(x, y, w, m_lineHeight);
+    painter.drawText(targetRect, Qt::AlignCenter, chStr);
+    auto inputRect = QRect(x, y + m_lineHeight, w, m_lineHeight);
+    painter.drawText(inputRect, Qt::AlignCenter, chStr);
     painter.restore();
 }
 
-void TypeWidget::drawCursor(QPainter &painter)
+void TypeWidget::drawCursor(QPainter &painter, int x, int y)
 {
     if (m_cursorShow) {
-        int i = m_input.length() / m_eachLineCharCount;
-        int j = m_input.length() % m_eachLineCharCount;
-        painter.drawLine(genCursorLine(i, j));
+        auto line = QLineF(
+                    x + 1,
+                    y + m_lineHeight,
+                    x + 1,
+                    y + m_lineHeight + m_lineHeight - 2
+                    );
+        painter.drawLine(line);
     }
     m_cursorShow = !m_cursorShow;
 }
