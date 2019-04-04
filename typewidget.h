@@ -41,6 +41,7 @@ private:
     int m_inputTotal;
     int m_textTotal;
     int m_prevWrongCount;
+    bool m_start;
 };
 
 #endif // WIDGET_H

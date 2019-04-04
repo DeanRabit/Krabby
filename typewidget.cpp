@@ -40,6 +40,7 @@ TypeWidget::TypeWidget(QWidget *parent)
     m_cursorShow = true;
     m_pageNum = 0;
     m_eachPageLineCount = 5;
+    m_start = false;
     m_time ++;
     resize(m_eachLineCharCount * m_fontWidth + 10, height());
     QFile file(":/test.txt");
@@ -54,7 +55,9 @@ TypeWidget::TypeWidget(QWidget *parent)
     }
     auto timer = new QTimer(this);
     connect(timer, &QTimer::timeout, [=]() {
-        m_time++;
+        if (m_start) {
+            m_time ++;
+        }
        this->update();
     });
     timer->setInterval(500);
@@ -108,6 +111,7 @@ void TypeWidget::keyReleaseEvent(QKeyEvent *event)
         if (key.isEmpty()) {
             // ignore
         } else {
+            m_start = true;
             m_input.append(key);
             m_inputTotal++;
             nextPageJudge();
