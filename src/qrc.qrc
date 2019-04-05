@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>test.txt</file>
         <file>images/logo.png</file>
+        <file>audio/error.wav</file>
+        <file>audio/type.wav</file>
     </qresource>
 </RCC>

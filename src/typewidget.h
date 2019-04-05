@@ -2,7 +2,7 @@
 #define WIDGET_H
 
 #include <QWidget>
-
+class QMediaPlayer;
 class TypeWidget : public QWidget
 {
     Q_OBJECT
@@ -24,6 +24,7 @@ private:
     void drawBottom(QPainter &painter);
     void nextPageJudge();
     int countWrongCh();
+    void playAudio();
 private:
     QString m_text;
     QString m_input;
@@ -39,6 +40,8 @@ private:
     int m_textTotal;
     int m_prevWrongCount;
     bool m_start;
+
+    QMediaPlayer *m_audioPlayer;
 };
 
 #endif // WIDGET_H

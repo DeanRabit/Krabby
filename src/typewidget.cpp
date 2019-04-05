@@ -1,6 +1,7 @@
 #include "typewidget.h"
 #include <QtCore>
 #include <QtWidgets>
+#include <QMediaPlayer>
 QString formatTime(int time) {
     QString str;
     int h = time / (60 * 60);
@@ -42,6 +43,7 @@ TypeWidget::TypeWidget(QWidget *parent)
     m_eachPageLineCount = 5;
     m_start = false;
     m_time ++;
+    m_audioPlayer = new QMediaPlayer(this);
     resize(m_eachLineCharCount * m_fontWidth + 10, height());
     QFile file(":/test.txt");
     file.open(QIODevice::ReadOnly);
@@ -134,6 +136,7 @@ void TypeWidget::keyReleaseEvent(QKeyEvent *event)
             m_start = true;
             m_input.append(key);
             m_inputTotal++;
+            playAudio();
             nextPageJudge();
         }
         break;
@@ -239,4 +242,14 @@ int TypeWidget::countWrongCh()
         }
     }
     return count;
+}
+
+void TypeWidget::playAudio()
+{
+    if(m_input[m_input.length() - 1] == m_text[m_input.length()-1]) {
+        m_audioPlayer->setMedia(QUrl("qrc:/audio/type.wav"));
+    } else {
+        m_audioPlayer->setMedia(QUrl("qrc:/audio/error.wav"));
+    }
+    m_audioPlayer->play();
 }
