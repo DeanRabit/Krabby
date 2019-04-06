@@ -8,7 +8,7 @@ QT       += core gui multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = Krabby
+TARGET = krabby
 TEMPLATE = app
 CONFIG += c++11 link_pkgconfig
 PKGCONFIG += dtkwidget
@@ -28,11 +28,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
     typewidget.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    bottom.cpp
 
 HEADERS += \
     typewidget.h \
-    mainwindow.h
+    mainwindow.h \
+    bottom.h
 
 DISTFILES +=
 
@@ -42,3 +44,6 @@ RESOURCES += \
 TRANSLATIONS += \
     translations/krabby_en.ts \
     translations/krabby_zh.ts
+
+FORMS += \
+    bottom.ui

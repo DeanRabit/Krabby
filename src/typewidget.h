@@ -16,12 +16,15 @@ public:
     void keyReleaseEvent(QKeyEvent *event) override;
 protected:
     void paintEvent(QPaintEvent *event) override;
-
+signals:
+    void updateTime(QString time);
+    void updateSpeed(int speed);
+    void updateProgress(int progress);
+    void updateAccuracy(int accuracy);
 private:
     void drawWrongChar(QPainter &painter, int x, int y, int w, QString targetCh, QString inputCh);
     void drawCorrectChar(QPainter &painter, int x, int y, int w, QString chStr);
     void drawCursor(QPainter &painter, int x, int y);
-    void drawBottom(QPainter &painter);
     void nextPageJudge();
     int countWrongCh();
     void playAudio();

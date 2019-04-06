@@ -59,6 +59,9 @@ TypeWidget::TypeWidget(QWidget *parent)
     connect(timer, &QTimer::timeout, [=]() {
         if (m_start) {
             m_time ++;
+            emit updateTime(formatTime(m_time / 2));
+            int speed = 1.0 * m_inputTotal / m_time * 2 * 60;
+            emit updateSpeed(speed);
         }
        this->update();
     });
@@ -116,7 +119,6 @@ void TypeWidget::paintEvent(QPaintEvent *event)
     }
 
     painter.restore();
-    drawBottom(painter);
 }
 
 void TypeWidget::keyReleaseEvent(QKeyEvent *event)
@@ -140,6 +142,12 @@ void TypeWidget::keyReleaseEvent(QKeyEvent *event)
             m_input.append(key);
             m_inputTotal++;
             playAudio();
+            int accuracy = 100 - 100 * (m_prevWrongCount + countWrongCh()) / (m_eachPageLineCount * m_eachLineCharCount * m_pageNum + m_input.length());
+            emit updateAccuracy(accuracy);
+            int progress = 100 * m_inputTotal / m_textTotal;
+            emit updateProgress(progress);
+            int speed = 1.0 * m_inputTotal / m_time * 2 * 60;
+            emit updateSpeed(speed);
             nextPageJudge();
         }
         break;
@@ -183,44 +191,6 @@ void TypeWidget::drawCursor(QPainter &painter, int x, int y)
         painter.drawLine(line);
     }
     m_cursorShow = !m_cursorShow;
-}
-
-void TypeWidget::drawBottom(QPainter &painter)
-{
-    painter.save();
-    auto font = painter.font();
-    font.setPixelSize(16);
-    painter.setFont(font);
-
-    int y = height() - 50;
-    int x = (width() - 500) / 2;
-    int w = 50;
-    painter.drawText(QRect(x, y, w, 50), tr("Time:"));
-    x += w;
-    w = 80;
-    painter.drawText(QRect(x, y, w, 50), formatTime(m_time / 2));
-    x += w;
-    w = 60;
-    painter.drawText(QRect(x, y, w, 50), tr("Speed:"));
-    x += w;
-    w = 100;
-    int speed = 1.0 * m_inputTotal / m_time * 2 * 60;
-    painter.drawText(QRect(x, y, w, 50), tr("%1 w/m").arg(speed));
-    x += w;
-    w = 80;
-    painter.drawText(QRect(x, y, w, 50), tr("Progress:"));
-    x += w;
-    int progress = 100 * m_inputTotal / m_textTotal;
-    w = 50;
-    painter.drawText(QRect(x, y, w, 50), tr("%1 %").arg(progress));
-    x += w;
-    w = 80;
-    painter.drawText(QRect(x, y, w, 50), tr("Accuracy:"));
-    x += w;
-    w = 50;
-    int accuracy = 100 - 100 * (m_prevWrongCount + countWrongCh()) / (m_eachPageLineCount * m_eachLineCharCount * m_pageNum + m_input.length());
-    painter.drawText(QRect(x, y, w, 50), tr("%1 %").arg(accuracy));
-    painter.restore();
 }
 
 void TypeWidget::nextPageJudge()
