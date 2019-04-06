@@ -44,7 +44,7 @@ TypeWidget::TypeWidget(QWidget *parent)
     m_start = false;
     m_time ++;
     m_audioPlayer = new QMediaPlayer(this);
-    resize(m_eachLineCharCount * m_fontWidth + 10, height());
+    resize(m_eachLineCharCount * 14 + 10, height());
     QFile file(":/test.txt");
     file.open(QIODevice::ReadOnly);
     auto text = file.readAll();
