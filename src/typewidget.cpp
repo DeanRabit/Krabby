@@ -59,13 +59,13 @@ TypeWidget::TypeWidget(QWidget *parent)
     connect(timer, &QTimer::timeout, [=]() {
         if (m_start) {
             m_time ++;
-            emit updateTime(formatTime(m_time / 2));
-            int speed = 1.0 * m_inputTotal / m_time * 2 * 60;
+            emit updateTime(formatTime(m_time / 4));
+            int speed = 1.0 * m_inputTotal / m_time * 4 * 60;
             emit updateSpeed(speed);
         }
        this->update();
     });
-    timer->setInterval(500);
+    timer->setInterval(250);
     timer->start();
     m_input = "Go0d ";
     m_text = m_pageText[m_pageNum];
