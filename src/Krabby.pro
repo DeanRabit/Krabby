@@ -38,3 +38,7 @@ DISTFILES +=
 
 RESOURCES += \
     qrc.qrc
+
+TRANSLATIONS += \
+    translations/krabby_en.ts \
+    translations/krabby_zh.ts
