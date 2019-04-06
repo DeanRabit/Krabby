@@ -22,7 +22,6 @@ TypeWidget::TypeWidget(QWidget *parent)
     QFile file(":/test.txt");
     file.open(QIODevice::ReadOnly);
     auto text = file.readAll();
-    text = "abc";
     m_textTotal = text.length();
     m_inputTotal = 0;
     for(int i = 0; i * m_eachPageLineCount * m_eachLineCharCount < text.length(); i++ ) {
@@ -97,7 +96,7 @@ void TypeWidget::paintEvent(QPaintEvent *event)
 
 void TypeWidget::keyReleaseEvent(QKeyEvent *event)
 {
-    if (event->modifiers() & (Qt::ShiftModifier | Qt::ControlModifier)) {
+    if (event->modifiers() & ( Qt::ControlModifier)) {
         return;
     }
     if (m_finish) {
