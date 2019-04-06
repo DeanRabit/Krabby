@@ -128,6 +128,9 @@ void TypeWidget::keyReleaseEvent(QKeyEvent *event)
             m_inputTotal --;
         }
         break;
+    case Qt::Key_Escape:
+        qDebug() << "ESC";
+        break;
     default:
         auto key = event->text();
         if (key.isEmpty()) {
