@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
         this->titlebar()->setBackgroundTransparent(true);
     }
-    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    QVBoxLayout *mainLayout = new QVBoxLayout();
     mainLayout->addWidget(m_typeWidget);
     auto bottom = new Bottom(this);
     mainLayout->addWidget(bottom);
