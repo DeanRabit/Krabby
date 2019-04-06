@@ -1,0 +1,13 @@
+[Desktop Entry]
+Categories=System;
+Comment=A simple type application.
+Exec=krabby
+GenericName=Krabby
+GenericName[zh_CN]=大钳蟹
+Icon=/usr/share/icons/krabby.png
+Name=Krabby
+Name[zh_CN]=大钳蟹
+StartupNotify=true
+Terminal=false
+Type=Application
+X-Deepin-Vendor=user-custom

@@ -4,33 +4,33 @@
 <context>
     <name>TypeWidget</name>
     <message>
-        <location filename="../typewidget.cpp" line="195"/>
+        <location filename="../typewidget.cpp" line="198"/>
         <source>Time:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../typewidget.cpp" line="201"/>
+        <location filename="../typewidget.cpp" line="204"/>
         <source>Speed:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../typewidget.cpp" line="205"/>
+        <location filename="../typewidget.cpp" line="208"/>
         <source>%1 w/m</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../typewidget.cpp" line="208"/>
+        <location filename="../typewidget.cpp" line="211"/>
         <source>Progress:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../typewidget.cpp" line="212"/>
-        <location filename="../typewidget.cpp" line="219"/>
+        <location filename="../typewidget.cpp" line="215"/>
+        <location filename="../typewidget.cpp" line="222"/>
         <source>%1 %</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../typewidget.cpp" line="215"/>
+        <location filename="../typewidget.cpp" line="218"/>
         <source>Accuracy:</source>
         <translation type="unfinished"></translation>
     </message>

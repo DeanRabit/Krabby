@@ -45,3 +45,4 @@ CMakeLists.txt.user*
 # CLion
 .idea
 cmake-build-*
+build
