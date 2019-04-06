@@ -3,6 +3,7 @@
 
 #include <QWidget>
 class QMediaPlayer;
+class QTimer;
 class TypeWidget : public QWidget
 {
     Q_OBJECT
@@ -28,6 +29,8 @@ private:
     void nextPageJudge();
     int countWrongCh();
     void playAudio();
+private slots:
+    void finishTest();
 private:
     QString m_text;
     QString m_input;
@@ -43,8 +46,10 @@ private:
     int m_textTotal;
     int m_prevWrongCount;
     bool m_start;
+    bool m_finish;
 
     QMediaPlayer *m_audioPlayer;
+    QTimer *m_timer;
 };
 
 #endif // WIDGET_H

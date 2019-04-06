@@ -30,13 +30,15 @@ SOURCES += \
     typewidget.cpp \
     mainwindow.cpp \
     bottom.cpp \
-    toolbar.cpp
+    toolbar.cpp \
+    finishdialog.cpp
 
 HEADERS += \
     typewidget.h \
     mainwindow.h \
     bottom.h \
-    toolbar.h
+    toolbar.h \
+    finishdialog.h
 
 DISTFILES +=
 
@@ -48,4 +50,5 @@ TRANSLATIONS += \
     translations/krabby_zh.ts
 
 FORMS += \
-    bottom.ui
+    bottom.ui \
+    finishdialog.ui

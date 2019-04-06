@@ -1,4 +1,5 @@
 #include "typewidget.h"
+#include "finishdialog.h"
 #include <QtCore>
 #include <QtWidgets>
 #include <QMediaPlayer>
@@ -42,12 +43,14 @@ TypeWidget::TypeWidget(QWidget *parent)
     m_pageNum = 0;
     m_eachPageLineCount = 5;
     m_start = false;
+    m_finish = false;
     m_time ++;
     m_audioPlayer = new QMediaPlayer(this);
     resize(m_eachLineCharCount * 14 + 10, height());
     QFile file(":/test.txt");
     file.open(QIODevice::ReadOnly);
     auto text = file.readAll();
+    text = "abc";
     m_textTotal = text.length();
     m_inputTotal = 0;
     for(int i = 0; i * m_eachPageLineCount * m_eachLineCharCount < text.length(); i++ ) {
@@ -55,8 +58,8 @@ TypeWidget::TypeWidget(QWidget *parent)
         int len = m_eachPageLineCount * m_eachLineCharCount;
         m_pageText.append(text.mid(index, len));
     }
-    auto timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, [=]() {
+    m_timer = new QTimer(this);
+    connect(m_timer, &QTimer::timeout, [=]() {
         if (m_start) {
             m_time ++;
             emit updateTime(formatTime(m_time / 4));
@@ -65,9 +68,9 @@ TypeWidget::TypeWidget(QWidget *parent)
         }
        this->update();
     });
-    timer->setInterval(250);
-    timer->start();
-    m_input = "Go0d ";
+    m_timer->setInterval(250);
+    m_timer->start();
+    m_input = "";
     m_text = m_pageText[m_pageNum];
 }
 
@@ -124,6 +127,9 @@ void TypeWidget::paintEvent(QPaintEvent *event)
 void TypeWidget::keyReleaseEvent(QKeyEvent *event)
 {
     if (event->modifiers() & (Qt::ShiftModifier | Qt::ControlModifier)) {
+        return;
+    }
+    if (m_finish) {
         return;
     }
     switch (event->key()) {
@@ -198,10 +204,12 @@ void TypeWidget::drawCursor(QPainter &painter, int x, int y)
 
 void TypeWidget::nextPageJudge()
 {
-    if (m_pageNum == m_pageText.length()) {
-        return;
-    }
     if (m_input.length() == m_text.length()) {
+        if (m_pageNum + 1 == m_pageText.length()) {
+            QTimer::singleShot(100, this, &TypeWidget::finishTest);
+
+            return;
+        }
         m_pageNum++;
         m_prevWrongCount = countWrongCh();
         m_input.clear();
@@ -229,3 +237,22 @@ void TypeWidget::playAudio()
     }
     m_audioPlayer->play();
 }
+
+void TypeWidget::finishTest()
+{
+    m_timer->stop();
+    m_finish = true;
+    int speed = 1.0 * m_inputTotal / m_time * 4 * 60;
+    int accuracy = 100 - 100 * (m_prevWrongCount + countWrongCh()) / (m_eachPageLineCount * m_eachLineCharCount * m_pageNum + m_input.length());
+    int score = speed * accuracy / 100;
+    FinishDialog d(
+                score,
+                formatTime(m_time / 4),
+                m_inputTotal,
+                speed,
+                accuracy,
+                this
+                );
+    d.exec();
+}
+
