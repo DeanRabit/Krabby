@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
         this->titlebar()->setCustomWidget(toolbar, Qt::AlignVCenter, false);
 
         this->titlebar()->setBackgroundTransparent(true);
+        connect(toolbar, &Toolbar::reset, m_typeWidget, &TypeWidget::reset);
     }
     QVBoxLayout *mainLayout = new QVBoxLayout();
     mainLayout->addWidget(m_typeWidget);
@@ -31,6 +32,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_typeWidget, &TypeWidget::updateAccuracy, bottom, &Bottom::updateAccuracy);
     connect(m_typeWidget, &TypeWidget::updateProgress, bottom, &Bottom::updateProgress);
     connect(m_typeWidget, &TypeWidget::updateSpeed, bottom, &Bottom::updateSpeed);
+
 }
 
 MainWindow::~MainWindow()

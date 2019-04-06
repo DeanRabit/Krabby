@@ -42,6 +42,7 @@ TypeWidget::TypeWidget(QWidget *parent)
     m_timer->start();
     m_input = "";
     m_text = m_pageText[m_pageNum];
+    setFocus();
 }
 
 TypeWidget::~TypeWidget()
@@ -132,6 +133,26 @@ void TypeWidget::keyReleaseEvent(QKeyEvent *event)
     update();
 }
 
+void TypeWidget::reset()
+{
+    m_input.clear();
+    m_inputTotal = 0;
+    m_time = 0;
+    updateTime("00:00::00");
+    updateProgress(0);
+    updateAccuracy(100);
+    updateSpeed(0);
+    m_pageNum = 0;
+    m_text = m_pageText[m_pageNum];
+    if (m_finish) {
+        m_finish = false;
+        m_start = false;
+        m_timer->start();
+    }
+    update();
+    setFocus();
+}
+
 
 
 void TypeWidget::drawWrongChar(QPainter &painter, int x, int y, int w, QString targetCh, QString inputCh)
@@ -213,6 +234,9 @@ int TypeWidget::calAccuracy()
 
 int TypeWidget::calSpeed()
 {
+    if (m_time == 0) {
+        return 0;
+    }
     return 1.0 * m_inputTotal / m_time * 4 * 60;
 }
 

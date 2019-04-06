@@ -6,5 +6,10 @@
         <file>audio/type.wav</file>
         <file>images/logo32.png</file>
         <file>images/krabby_finish_test.png</file>
+        <file>icon/speed.png</file>
+        <file>icon/time.png</file>
+        <file>icon/progress.png</file>
+        <file>icon/accuracy.png</file>
+        <file>icon/reset.png</file>
     </qresource>
 </RCC>

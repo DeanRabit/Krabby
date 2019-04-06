@@ -15,6 +15,8 @@ public:
 
     // QWidget interface
     void keyReleaseEvent(QKeyEvent *event) override;
+public slots:
+    void reset();
 protected:
     void paintEvent(QPaintEvent *event) override;
 signals:
