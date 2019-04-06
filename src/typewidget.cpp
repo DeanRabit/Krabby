@@ -3,36 +3,8 @@
 #include <QtCore>
 #include <QtWidgets>
 #include <QMediaPlayer>
-QString formatTime(int time) {
-    QString str;
-    int h = time / (60 * 60);
-    time =  time % (60 * 60);
-    if (h==0) {
-        str.append("00");
-    } else if (h < 10) {
-        str.append("0").append(h);
-    } else {
-        str.append(h);
-    }
-    str.append(":");
+int TIME_INTERVAL = 250;
 
-    int m = time / 60;
-    time =  time % 60;
-    if (m==0) {
-        str.append("00");
-    } else if (m < 10) {
-        str.append("0").append(h);
-    } else {
-        str.append(m);
-    }
-    str.append(":");
-
-    if (time < 10) {
-        str.append("0");
-    }
-    str.append(QString::number(time));
-    return str;
-}
 TypeWidget::TypeWidget(QWidget *parent)
     : QWidget(parent)
 {
@@ -62,13 +34,12 @@ TypeWidget::TypeWidget(QWidget *parent)
     connect(m_timer, &QTimer::timeout, [=]() {
         if (m_start) {
             m_time ++;
-            emit updateTime(formatTime(m_time / 4));
-            int speed = 1.0 * m_inputTotal / m_time * 4 * 60;
-            emit updateSpeed(speed);
+            emit updateTime(formatTime());
+            emit updateSpeed(calSpeed());
         }
        this->update();
     });
-    m_timer->setInterval(250);
+    m_timer->setInterval(TIME_INTERVAL);
     m_timer->start();
     m_input = "";
     m_text = m_pageText[m_pageNum];
@@ -151,12 +122,10 @@ void TypeWidget::keyReleaseEvent(QKeyEvent *event)
             m_input.append(key);
             m_inputTotal++;
             playAudio();
-            int accuracy = 100 - 100 * (m_prevWrongCount + countWrongCh()) / (m_eachPageLineCount * m_eachLineCharCount * m_pageNum + m_input.length());
-            emit updateAccuracy(accuracy);
+            emit updateAccuracy(calAccuracy());
             int progress = 100 * m_inputTotal / m_textTotal;
             emit updateProgress(progress);
-            int speed = 1.0 * m_inputTotal / m_time * 2 * 60;
-            emit updateSpeed(speed);
+            emit updateSpeed(calSpeed());
             nextPageJudge();
         }
         break;
@@ -238,16 +207,31 @@ void TypeWidget::playAudio()
     m_audioPlayer->play();
 }
 
+int TypeWidget::calAccuracy()
+{
+    return 100 - 100 * (m_prevWrongCount + countWrongCh()) / (m_eachPageLineCount * m_eachLineCharCount * m_pageNum + m_input.length());
+}
+
+int TypeWidget::calSpeed()
+{
+    return 1.0 * m_inputTotal / m_time * 4 * 60;
+}
+
+QString TypeWidget::formatTime()
+{
+    return QDateTime::fromTime_t(m_time / (1000 / TIME_INTERVAL)).toUTC().toString("hh:mm:ss");
+}
+
 void TypeWidget::finishTest()
 {
     m_timer->stop();
     m_finish = true;
-    int speed = 1.0 * m_inputTotal / m_time * 4 * 60;
-    int accuracy = 100 - 100 * (m_prevWrongCount + countWrongCh()) / (m_eachPageLineCount * m_eachLineCharCount * m_pageNum + m_input.length());
+    int speed = calSpeed();
+    int accuracy = calAccuracy();
     int score = speed * accuracy / 100;
     FinishDialog d(
                 score,
-                formatTime(m_time / 4),
+                formatTime(),
                 m_inputTotal,
                 speed,
                 accuracy,

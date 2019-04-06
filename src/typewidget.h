@@ -29,6 +29,9 @@ private:
     void nextPageJudge();
     int countWrongCh();
     void playAudio();
+    int calAccuracy();
+    int calSpeed();
+    QString formatTime();
 private slots:
     void finishTest();
 private:
