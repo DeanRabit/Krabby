@@ -123,6 +123,9 @@ void TypeWidget::paintEvent(QPaintEvent *event)
 
 void TypeWidget::keyReleaseEvent(QKeyEvent *event)
 {
+    if (event->modifiers() & (Qt::ShiftModifier | Qt::ControlModifier)) {
+        return;
+    }
     switch (event->key()) {
     case Qt::Key_Backspace:
         m_input.remove(m_input.length() -1, 1);
