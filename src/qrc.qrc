@@ -4,5 +4,6 @@
         <file>images/logo.png</file>
         <file>audio/error.wav</file>
         <file>audio/type.wav</file>
+        <file>images/logo32.png</file>
     </qresource>
 </RCC>

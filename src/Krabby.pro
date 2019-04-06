@@ -29,12 +29,14 @@ SOURCES += \
         main.cpp \
     typewidget.cpp \
     mainwindow.cpp \
-    bottom.cpp
+    bottom.cpp \
+    toolbar.cpp
 
 HEADERS += \
     typewidget.h \
     mainwindow.h \
-    bottom.h
+    bottom.h \
+    toolbar.h
 
 DISTFILES +=
 

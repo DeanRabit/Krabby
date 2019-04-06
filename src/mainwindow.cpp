@@ -1,12 +1,21 @@
 #include "mainwindow.h"
 #include "typewidget.h"
 #include "bottom.h"
+#include "toolbar.h"
 #include <QtWidgets>
+#include <DTitlebar>
 MainWindow::MainWindow(QWidget *parent) :
     DMainWindow(parent)
 {
     m_typeWidget = new TypeWidget();
-    setCentralWidget(m_typeWidget);
+    if (this->titlebar()) {
+//        this->titlebar()->setMenu(menu);
+
+        Toolbar *toolbar = new Toolbar();
+        this->titlebar()->setCustomWidget(toolbar, Qt::AlignVCenter, false);
+
+        this->titlebar()->setBackgroundTransparent(true);
+    }
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->addWidget(m_typeWidget);
     auto bottom = new Bottom(this);
