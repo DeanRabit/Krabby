@@ -1,4 +1,5 @@
 # Krabby
+
 一个简单的打字软件.开发代号“大钳蟹”
 ![Krabby](http://s1.52poke.wiki/wiki/thumb/a/a7/098Krabby.png/300px-098Krabby.png)
 ## 大钳蟹简介
@@ -40,4 +41,4 @@
   - 每页有5行输入的文本
   
 ## 当前实现
-![demo](https://img-blog.csdnimg.cn/201904032156488.gif)
+![demo](https://img-blog.csdnimg.cn/20190406212406814.png)
