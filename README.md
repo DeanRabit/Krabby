@@ -42,3 +42,14 @@
   
 ## 当前实现
 ![demo](https://img-blog.csdnimg.cn/20190406212406814.png)
+
+## 使用
+
+在Release页面下载deb包 [前往下载地址](https://github.com/PikachuHy/Krabby/releases)
+
+然后双击安装就好
+
+## 参与讨论
+
+可以在deepin论坛的帖子 [一个简单的打字软件](https://bbs.deepin.org/forum.php?mod=viewthread&tid=176472&extra=) 留言，或者提ISSUE
+
