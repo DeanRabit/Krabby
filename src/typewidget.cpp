@@ -173,9 +173,9 @@ void TypeWidget::drawCursor(QPainter &painter, int x, int y)
     if (m_cursorShow) {
         auto line = QLineF(
                     x + 1,
-                    y + m_lineHeight,
+                    y + m_lineHeight + 5,
                     x + 1,
-                    y + m_lineHeight + m_lineHeight - 2
+                    y + m_lineHeight + m_lineHeight - 2 -5
                     );
         painter.drawLine(line);
     }
