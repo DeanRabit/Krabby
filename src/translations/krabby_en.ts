@@ -164,6 +164,14 @@
     </message>
 </context>
 <context>
+    <name>MainWindow</name>
+    <message>
+        <location filename="../mainwindow.cpp" line="16"/>
+        <source>Setting</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
         <location filename="../main.cpp" line="19"/>
@@ -173,6 +181,54 @@
     <message>
         <location filename="../main.cpp" line="20"/>
         <source>a simple type application for deepin.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingDialog</name>
+    <message>
+        <location filename="../settingdialog.ui" line="14"/>
+        <source>Setting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingdialog.ui" line="37"/>
+        <source>Correct Char Color:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingdialog.ui" line="44"/>
+        <source>Wrong Char Color:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingdialog.ui" line="61"/>
+        <source>Keyboard Audio:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingdialog.ui" line="78"/>
+        <source>Untyped Char Color:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingdialog.ui" line="85"/>
+        <source>Restore Default Setting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingdialog.cpp" line="27"/>
+        <source>Select Correct Char Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingdialog.cpp" line="40"/>
+        <source>Select Wrong Char Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settingdialog.cpp" line="53"/>
+        <source>Select Untyped Char Color</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
