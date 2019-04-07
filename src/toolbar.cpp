@@ -14,9 +14,16 @@ Toolbar::Toolbar(QWidget *parent) : QWidget(parent)
     resetBtn->setIcon(QIcon(":/icon/reset.png"));
     resetBtn->setFocusPolicy(Qt::NoFocus);
     layout->addWidget(resetBtn);
+    auto articleBtn = new QPushButton();
+    articleBtn->setFlat(true);
+    articleBtn->setCursor(Qt::PointingHandCursor);
+    articleBtn->setIcon(QIcon(":/icon/article.png"));
+    articleBtn->setFocusPolicy(Qt::NoFocus);
+    layout->addWidget(articleBtn);
     layout->addStretch(1);
     layout->addWidget(new QLabel(tr("Krabby")));
     layout->addStretch(1);
 
     connect(resetBtn, &QPushButton::clicked, this, &Toolbar::reset);
+    connect(articleBtn, &QPushButton::clicked, this, &Toolbar::chooseArticle);
 }

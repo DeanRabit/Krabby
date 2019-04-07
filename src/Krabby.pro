@@ -31,14 +31,16 @@ SOURCES += \
     mainwindow.cpp \
     bottom.cpp \
     toolbar.cpp \
-    finishdialog.cpp
+    finishdialog.cpp \
+    choosearticledialog.cpp
 
 HEADERS += \
     typewidget.h \
     mainwindow.h \
     bottom.h \
     toolbar.h \
-    finishdialog.h
+    finishdialog.h \
+    choosearticledialog.h
 
 DISTFILES +=
 
@@ -51,4 +53,5 @@ TRANSLATIONS += \
 
 FORMS += \
     bottom.ui \
-    finishdialog.ui
+    finishdialog.ui \
+    choosearticledialog.ui

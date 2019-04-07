@@ -19,16 +19,6 @@ TypeWidget::TypeWidget(QWidget *parent)
     m_time ++;
     m_audioPlayer = new QMediaPlayer(this);
     resize(m_eachLineCharCount * 14 + 10, height());
-    QFile file(":/test.txt");
-    file.open(QIODevice::ReadOnly);
-    auto text = file.readAll();
-    m_textTotal = text.length();
-    m_inputTotal = 0;
-    for(int i = 0; i * m_eachPageLineCount * m_eachLineCharCount < text.length(); i++ ) {
-        int index = i * m_eachPageLineCount * m_eachLineCharCount;
-        int len = m_eachPageLineCount * m_eachLineCharCount;
-        m_pageText.append(text.mid(index, len));
-    }
     m_timer = new QTimer(this);
     connect(m_timer, &QTimer::timeout, [=]() {
         if (m_start) {
@@ -41,8 +31,12 @@ TypeWidget::TypeWidget(QWidget *parent)
     m_timer->setInterval(TIME_INTERVAL);
     m_timer->start();
     m_input = "";
-    m_text = m_pageText[m_pageNum];
     setFocus();
+    QFile file(":/test.txt");
+    file.open(QIODevice::ReadOnly);
+    auto text = file.readAll();
+    file.close();
+    resetText(QString(text));
 }
 
 TypeWidget::~TypeWidget()
@@ -151,6 +145,26 @@ void TypeWidget::reset()
     }
     update();
     setFocus();
+}
+
+void TypeWidget::resetText(QString text)
+{
+//    qDebug().noquote().nospace() << text;
+    text = text.replace("\n", ". ");
+    m_pageText.clear();
+    m_textTotal = text.length();
+    m_inputTotal = 0;
+    for(int i = 0; i * m_eachPageLineCount * m_eachLineCharCount < text.length(); i++ ) {
+        int index = i * m_eachPageLineCount * m_eachLineCharCount;
+        int len = m_eachPageLineCount * m_eachLineCharCount;
+        m_pageText.append(text.mid(index, len));
+    }
+    reset();
+}
+
+void TypeWidget::pause()
+{
+    m_start = false;
 }
 
 

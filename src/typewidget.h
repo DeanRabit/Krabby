@@ -17,6 +17,8 @@ public:
     void keyReleaseEvent(QKeyEvent *event) override;
 public slots:
     void reset();
+    void resetText(QString text);
+    void pause();
 protected:
     void paintEvent(QPaintEvent *event) override;
 signals:

@@ -4,6 +4,7 @@
 #include <DMainWindow>
 DWIDGET_USE_NAMESPACE
 class TypeWidget;
+class ChooseArticleDialog;
 class MainWindow : public DMainWindow
 {
     Q_OBJECT
@@ -17,6 +18,7 @@ protected:
     void keyReleaseEvent(QKeyEvent *event) override;
 private:
     TypeWidget* m_typeWidget;
+    ChooseArticleDialog* m_chooseArticleDialog;
 };
 
 #endif // MAINWINDOW_H

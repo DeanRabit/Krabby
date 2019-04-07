@@ -11,6 +11,7 @@ public:
 
 signals:
     void reset();
+    void chooseArticle();
 public slots:
 };
 

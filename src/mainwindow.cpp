@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "typewidget.h"
+#include "choosearticledialog.h"
 #include "bottom.h"
 #include "toolbar.h"
 #include <QtWidgets>
@@ -8,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     DMainWindow(parent)
 {
     m_typeWidget = new TypeWidget();
+    m_chooseArticleDialog = new ChooseArticleDialog();
     if (this->titlebar()) {
 //        this->titlebar()->setMenu(menu);
 
@@ -16,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
         this->titlebar()->setBackgroundTransparent(true);
         connect(toolbar, &Toolbar::reset, m_typeWidget, &TypeWidget::reset);
+        connect(toolbar, &Toolbar::chooseArticle, m_typeWidget, &TypeWidget::pause);
+        connect(toolbar, &Toolbar::chooseArticle, m_chooseArticleDialog, &ChooseArticleDialog::exec);
     }
     QVBoxLayout *mainLayout = new QVBoxLayout();
     mainLayout->addWidget(m_typeWidget);
@@ -33,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_typeWidget, &TypeWidget::updateProgress, bottom, &Bottom::updateProgress);
     connect(m_typeWidget, &TypeWidget::updateSpeed, bottom, &Bottom::updateSpeed);
 
+    connect(m_chooseArticleDialog, &ChooseArticleDialog::chooseArticle, m_typeWidget, &TypeWidget::resetText);
 }
 
 MainWindow::~MainWindow()

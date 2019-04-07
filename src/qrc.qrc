@@ -11,5 +11,10 @@
         <file>icon/progress.png</file>
         <file>icon/accuracy.png</file>
         <file>icon/reset.png</file>
+        <file>article/Lyrics/My Heart Will Go On.txt</file>
+        <file>article/Speech/Independence Day.txt</file>
+        <file>article/Lyrics/Nothing's gonna change my love for you.txt</file>
+        <file>icon/article.png</file>
+        <file>icon/folder.png</file>
     </qresource>
 </RCC>
