@@ -36,6 +36,7 @@ private:
     int calAccuracy();
     int calSpeed();
     QString formatTime();
+    QString prehanlde(QString text);
 private slots:
     void finishTest();
 private:

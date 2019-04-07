@@ -150,7 +150,7 @@ void TypeWidget::reset()
 void TypeWidget::resetText(QString text)
 {
 //    qDebug().noquote().nospace() << text;
-    text = text.replace("\n", ". ");
+    text = prehanlde(text);
     m_pageText.clear();
     m_textTotal = text.length();
     m_inputTotal = 0;
@@ -257,6 +257,14 @@ int TypeWidget::calSpeed()
 QString TypeWidget::formatTime()
 {
     return QDateTime::fromTime_t(m_time / (1000 / TIME_INTERVAL)).toUTC().toString("hh:mm:ss");
+}
+
+QString TypeWidget::prehanlde(QString text)
+{
+    text = text.replace("\n\n", "\n");
+    text = text.replace(":\n", ":");
+    text = text.replace("\n", ". ");
+    return text;
 }
 
 void TypeWidget::finishTest()
