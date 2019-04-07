@@ -45,6 +45,10 @@
 
 ![score](https://img-blog.csdnimg.cn/20190407123805743.png)
 
+![article](https://img-blog.csdnimg.cn/2019040721350423.png)
+
+![setting](https://img-blog.csdnimg.cn/20190407213525447.png)
+
 ## 使用
 
 在Release页面下载deb包 [前往下载地址](https://github.com/PikachuHy/Krabby/releases)
