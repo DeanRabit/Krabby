@@ -43,6 +43,8 @@
 ## 当前实现
 ![demo](https://img-blog.csdnimg.cn/20190406212406814.png)
 
+![score](https://img-blog.csdnimg.cn/20190407123805743.png)
+
 ## 使用
 
 在Release页面下载deb包 [前往下载地址](https://github.com/PikachuHy/Krabby/releases)
