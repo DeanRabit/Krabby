@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.7)
 set(TARGET_NAME krabby)
 project(${TARGET_NAME}
-        VERSION 1.0.1
+        VERSION 1.0.2
         DESCRIPTION "a simple type application for deepin"
         )
 set(CMAKE_CXX_STANDARD 17)
