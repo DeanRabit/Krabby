@@ -4,6 +4,7 @@
 #include <QWidget>
 class QMediaPlayer;
 class QTimer;
+class Setting;
 class TypeWidget : public QWidget
 {
     Q_OBJECT
@@ -58,6 +59,7 @@ private:
 
     QMediaPlayer *m_audioPlayer;
     QTimer *m_timer;
+    Setting *m_setting;
 };
 
 #endif // WIDGET_H

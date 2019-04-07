@@ -32,7 +32,10 @@ SOURCES += \
     bottom.cpp \
     toolbar.cpp \
     finishdialog.cpp \
-    choosearticledialog.cpp
+    choosearticledialog.cpp \
+    settingdialog.cpp \
+    setting.cpp \
+    colorbutton.cpp
 
 HEADERS += \
     typewidget.h \
@@ -40,7 +43,10 @@ HEADERS += \
     bottom.h \
     toolbar.h \
     finishdialog.h \
-    choosearticledialog.h
+    choosearticledialog.h \
+    settingdialog.h \
+    setting.h \
+    colorbutton.h
 
 DISTFILES +=
 
@@ -54,4 +60,5 @@ TRANSLATIONS += \
 FORMS += \
     bottom.ui \
     finishdialog.ui \
-    choosearticledialog.ui
+    choosearticledialog.ui \
+    settingdialog.ui

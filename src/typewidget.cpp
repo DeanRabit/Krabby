@@ -1,5 +1,6 @@
 #include "typewidget.h"
 #include "finishdialog.h"
+#include "setting.h"
 #include <QtCore>
 #include <QtWidgets>
 #include <QMediaPlayer>
@@ -18,6 +19,7 @@ TypeWidget::TypeWidget(QWidget *parent)
     m_finish = false;
     m_time ++;
     m_audioPlayer = new QMediaPlayer(this);
+    m_setting = new Setting();
     resize(m_eachLineCharCount * 14 + 10, height());
     m_timer = new QTimer(this);
     connect(m_timer, &QTimer::timeout, [=]() {
@@ -62,6 +64,7 @@ void TypeWidget::paintEvent(QPaintEvent *event)
             if (m_input.length() == i) {
                 drawCursor(painter, x, y);
             }
+            painter.setPen(m_setting->untypedCharColor());
             QString chStr = QString(m_text[i]);
             w = fontMetrics.width(chStr);
             auto rect = QRect(x, y, w, m_lineHeight);
@@ -172,7 +175,7 @@ void TypeWidget::pause()
 void TypeWidget::drawWrongChar(QPainter &painter, int x, int y, int w, QString targetCh, QString inputCh)
 {
     painter.save();
-    painter.setPen(Qt::red);
+    painter.setPen(m_setting->wrongCharColor());
     auto targetRect = QRect(x, y, w, m_lineHeight);
     painter.drawText(targetRect, Qt::AlignCenter, QString(targetCh));
     auto inputRect = QRect(x, y + m_lineHeight, w, m_lineHeight);
@@ -183,7 +186,7 @@ void TypeWidget::drawWrongChar(QPainter &painter, int x, int y, int w, QString t
 void TypeWidget::drawCorrectChar(QPainter &painter, int x, int y, int w, QString chStr)
 {
     painter.save();
-    painter.setPen(Qt::gray);
+    painter.setPen(m_setting->correctCharColor());
     auto targetRect = QRect(x, y, w, m_lineHeight);
     painter.drawText(targetRect, Qt::AlignCenter, chStr);
     auto inputRect = QRect(x, y + m_lineHeight, w, m_lineHeight);
@@ -233,6 +236,9 @@ int TypeWidget::countWrongCh()
 
 void TypeWidget::playAudio()
 {
+    if (!m_setting->keyboardAudio()) {
+        return;
+    }
     if(m_input[m_input.length() - 1] == m_text[m_input.length()-1]) {
         m_audioPlayer->setMedia(QUrl("qrc:/audio/type.wav"));
     } else {

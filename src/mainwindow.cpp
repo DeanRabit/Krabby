@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "typewidget.h"
 #include "choosearticledialog.h"
+#include "settingdialog.h"
 #include "bottom.h"
 #include "toolbar.h"
 #include <QtWidgets>
@@ -11,7 +12,12 @@ MainWindow::MainWindow(QWidget *parent) :
     m_typeWidget = new TypeWidget();
     m_chooseArticleDialog = new ChooseArticleDialog();
     if (this->titlebar()) {
-//        this->titlebar()->setMenu(menu);
+        QMenu *menu = new QMenu();
+        menu->addAction(tr("Setting"), [=](){
+            auto d = new SettingDialog();
+            d->show();
+        });
+        this->titlebar()->setMenu(menu);
 
         Toolbar *toolbar = new Toolbar();
         this->titlebar()->setCustomWidget(toolbar, Qt::AlignVCenter, false);
