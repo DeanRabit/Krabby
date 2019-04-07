@@ -16,8 +16,8 @@ int main(int argc, char *argv[])
     a.setApplicationName("krabby");
     a.setApplicationVersion("1.0");
     a.setProductIcon(QIcon(":/images/logo.png"));
-    a.setProductName("Krabbby");
-    a.setApplicationDescription("This is a simple type application.");
+    a.setProductName(QObject::tr("Krabby"));
+    a.setApplicationDescription(QObject::tr("a simple type application for deepin."));
 
     MainWindow w;
     w.show();

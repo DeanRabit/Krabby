@@ -9,42 +9,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bottom.ui" line="33"/>
+        <location filename="../bottom.ui" line="43"/>
         <source>Time:</source>
         <translation>时间:</translation>
     </message>
     <message>
-        <location filename="../bottom.ui" line="40"/>
+        <location filename="../bottom.ui" line="50"/>
         <source>00:00:00</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bottom.ui" line="47"/>
+        <location filename="../bottom.ui" line="67"/>
         <source>Speed:</source>
         <translation>速度:</translation>
     </message>
     <message>
-        <location filename="../bottom.ui" line="54"/>
+        <location filename="../bottom.ui" line="80"/>
         <source>225 w/m</source>
         <translation type="unfinished">100 字符/分 {225 ?}</translation>
     </message>
     <message>
-        <location filename="../bottom.ui" line="61"/>
+        <location filename="../bottom.ui" line="97"/>
         <source>Progress:</source>
         <translation>进度:</translation>
     </message>
     <message>
-        <location filename="../bottom.ui" line="68"/>
+        <location filename="../bottom.ui" line="104"/>
         <source>0 %</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../bottom.ui" line="75"/>
+        <location filename="../bottom.ui" line="121"/>
         <source>Accuracy:</source>
         <translation>正确率:</translation>
     </message>
     <message>
-        <location filename="../bottom.ui" line="82"/>
+        <location filename="../bottom.ui" line="128"/>
         <source>100 %</source>
         <translation type="unfinished"></translation>
     </message>
@@ -78,47 +78,47 @@
         <translation>100 字符/分</translation>
     </message>
     <message>
-        <location filename="../finishdialog.ui" line="90"/>
+        <location filename="../finishdialog.ui" line="103"/>
         <source>Time:</source>
         <translation>时间:</translation>
     </message>
     <message>
-        <location filename="../finishdialog.ui" line="97"/>
+        <location filename="../finishdialog.ui" line="110"/>
         <source>00:00:00</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../finishdialog.ui" line="104"/>
+        <location filename="../finishdialog.ui" line="117"/>
         <source>Words:</source>
         <translation>字符:</translation>
     </message>
     <message>
-        <location filename="../finishdialog.ui" line="111"/>
+        <location filename="../finishdialog.ui" line="124"/>
         <source>225 w</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../finishdialog.ui" line="118"/>
+        <location filename="../finishdialog.ui" line="131"/>
         <source>Speed:</source>
         <translation>速度:</translation>
     </message>
     <message>
-        <location filename="../finishdialog.ui" line="125"/>
+        <location filename="../finishdialog.ui" line="138"/>
         <source>167 w/m</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../finishdialog.ui" line="132"/>
+        <location filename="../finishdialog.ui" line="145"/>
         <source>Accuracy:</source>
         <translation>正确率:</translation>
     </message>
     <message>
-        <location filename="../finishdialog.ui" line="139"/>
+        <location filename="../finishdialog.ui" line="152"/>
         <source>100 %</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../finishdialog.ui" line="163"/>
+        <location filename="../finishdialog.ui" line="176"/>
         <source>Confirm</source>
         <translation>确定</translation>
     </message>
@@ -140,9 +140,22 @@
     </message>
 </context>
 <context>
+    <name>QObject</name>
+    <message>
+        <location filename="../main.cpp" line="19"/>
+        <source>Krabby</source>
+        <translation>大钳蟹</translation>
+    </message>
+    <message>
+        <location filename="../main.cpp" line="20"/>
+        <source>a simple type application for deepin.</source>
+        <translation>大钳蟹是一款设计简洁，美观易用的打字软件。</translation>
+    </message>
+</context>
+<context>
     <name>Toolbar</name>
     <message>
-        <location filename="../toolbar.cpp" line="12"/>
+        <location filename="../toolbar.cpp" line="18"/>
         <source>Krabby</source>
         <translation>大钳蟹</translation>
     </message>
