@@ -61,6 +61,30 @@
     </message>
 </context>
 <context>
+    <name>ChooseArticleDialog</name>
+    <message>
+        <location filename="../choosearticledialog.ui" line="14"/>
+        <location filename="../choosearticledialog.cpp" line="63"/>
+        <source>Choose Article</source>
+        <translation>选择文章</translation>
+    </message>
+    <message>
+        <location filename="../choosearticledialog.ui" line="29"/>
+        <source>Article List</source>
+        <translation>文章列表</translation>
+    </message>
+    <message>
+        <location filename="../choosearticledialog.ui" line="102"/>
+        <source>Confirm</source>
+        <translation>确定</translation>
+    </message>
+    <message>
+        <location filename="../choosearticledialog.cpp" line="65"/>
+        <source>text (*.txt)</source>
+        <translation>文本文件 (*.txt)</translation>
+    </message>
+</context>
+<context>
     <name>FinishDialog</name>
     <message>
         <location filename="../finishdialog.ui" line="14"/>
@@ -155,7 +179,7 @@
 <context>
     <name>Toolbar</name>
     <message>
-        <location filename="../toolbar.cpp" line="18"/>
+        <location filename="../toolbar.cpp" line="24"/>
         <source>Krabby</source>
         <translation>大钳蟹</translation>
     </message>
