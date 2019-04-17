@@ -53,7 +53,7 @@ file(GLOB QM_FILES "translations/*.qm")
 install(TARGETS ${TARGET_NAME} DESTINATION bin)
 install(FILES ${QM_FILES} DESTINATION share/${TARGET_NAME}/translations)
 install(FILES       "krabby.desktop"
-        DESTINATION "/usr/share/applications")
+        DESTINATION "share/applications")
 install(FILES       "krabby.png"
-        DESTINATION "/usr/share/icons")
+        DESTINATION "share/icons")
 include(CPack)
